@@ -35,6 +35,12 @@ class GitFlowSettings : PersistentStateComponent<GitFlowSettings.State> {
         XmlSerializerUtil.copyBean(state, myState)
     }
 
+    /**
+     * Whether the finish dialog starts with "push" ticked: always for a release or hotfix, whose
+     * merge into production is meant to be published, and as remembered for the other types.
+     */
+    fun pushByDefault(type: FlowType): Boolean = type.versioned || myState.pushAfterFinish
+
     /** The default tag message for a release or hotfix, with the placeholder replaced by its name. */
     fun tagMessage(type: FlowType, name: String): String {
         val template = if (type == FlowType.HOTFIX) myState.hotfixTagMessage else myState.releaseTagMessage

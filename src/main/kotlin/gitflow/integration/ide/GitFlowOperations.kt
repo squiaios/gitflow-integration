@@ -100,13 +100,18 @@ object GitFlowOperations {
         ) { engine -> engine.finish(branch.type, branch.name, options) }
     }
 
-    /** Next time the dialog opens with the choices just made. */
+    /**
+     * Next time the dialog opens with the choices just made. A release or hotfix always starts with
+     * "push" ticked, so its choice is not kept: it would otherwise become the default of the others.
+     */
     private fun remember(project: Project, branch: FlowBranch, options: FinishOptions, hasRemote: Boolean) {
         val settings = GitFlowSettings.getInstance(project).state
         settings.keepBranch = options.keep
         if (hasRemote) {
             settings.fetchBeforeFinish = options.fetch
-            settings.pushAfterFinish = options.push
+            if (!branch.type.versioned) {
+                settings.pushAfterFinish = options.push
+            }
         }
         if (!branch.type.versioned && !options.squash) {
             settings.noFastForward = options.noFastForward

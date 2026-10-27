@@ -1,4 +1,4 @@
-rootProject.name = "gitflow-integration"
+rootProject.name = "gitflow-pilot"
 
 pluginManagement {
     repositories {

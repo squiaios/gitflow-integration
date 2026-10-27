@@ -44,7 +44,7 @@ class FinishDialog(
         val hasRemote = context.remote != null
         fetch.isSelected = hasRemote && defaults.fetchBeforeFinish
         fetch.isEnabled = hasRemote
-        push.isSelected = hasRemote && defaults.pushAfterFinish
+        push.isSelected = hasRemote && GitFlowSettings.getInstance(project).pushByDefault(type)
         push.isEnabled = hasRemote
         keep.isSelected = defaults.keepBranch
 

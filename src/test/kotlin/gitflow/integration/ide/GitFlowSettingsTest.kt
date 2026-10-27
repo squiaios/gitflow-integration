@@ -20,6 +20,20 @@ class GitFlowSettingsTest {
     }
 
     @Test
+    fun aReleaseOrHotfixPushesByDefaultWhateverWasRemembered() {
+        val settings = GitFlowSettings()
+
+        assertTrue(settings.pushByDefault(FlowType.RELEASE))
+        assertTrue(settings.pushByDefault(FlowType.HOTFIX))
+        assertFalse(settings.pushByDefault(FlowType.FEATURE))
+        assertFalse(settings.pushByDefault(FlowType.BUGFIX))
+
+        settings.state.pushAfterFinish = true
+        assertTrue(settings.pushByDefault(FlowType.FEATURE))
+        assertTrue(settings.pushByDefault(FlowType.BUGFIX))
+    }
+
+    @Test
     fun tagMessagesExpandTheNamePlaceholder() {
         val settings = GitFlowSettings()
 
