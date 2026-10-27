@@ -37,6 +37,9 @@ The defaults of the dialogs are set in **Settings ▸ Version Control ▸ Git Fl
 - **Resuming after a conflict.** A conflict interrupts the operation and opens the IDE's merge tool.
   Once the conflicts are resolved and the merge is committed, *finishing again* picks up where it
   stopped: what is already merged or tagged is not redone (as with `git flow`).
+- Finishing a `release` or `hotfix` starts with *Push* ticked (when there is a remote), so the merge
+  into production, `develop` and the tag are published; untick it to keep everything local. For the
+  other types the dialog remembers the last choice.
 - Only one `release` and one `hotfix` at a time.
 - Finishing a `hotfix` merges it into production and into **development**; if a `release` is open,
   a warning says so (it does not contain the fix).
@@ -52,7 +55,7 @@ the Kotlin standard library, so the plugin does not ship its own copy.
 
 ```bash
 ./gradlew test            # engine tests, run against real git repositories
-./gradlew buildPlugin     # build/distributions/gitflow-integration-<version>.zip
+./gradlew buildPlugin     # build/distributions/gitflow-pilot-<version>.zip
 ./gradlew verifyPlugin    # Plugin Verifier against the recommended IDEs
 ./gradlew runIde          # test IDE with the plugin installed
 ```
