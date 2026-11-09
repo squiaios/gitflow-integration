@@ -21,6 +21,16 @@
     ]]></description>
 
     <change-notes><![CDATA[
+    <b>1.0.2</b>
+    <ul>
+      <li>Verified with IntelliJ-based IDEs 2026.3 (build 263).</li>
+      <li>Cleaner plugin archive: leftover empty folders removed.</li>
+    </ul>
+    <b>1.0.1</b>
+    <ul>
+      <li>Renamed to GitFlow Pilot.</li>
+      <li>Finishing a release or a hotfix now ticks "Push" by default when the repository has a remote.</li>
+    </ul>
     <b>1.0.0</b>
     <ul>
       <li>Initial release: init, start, finish, publish, check out and delete for feature, bugfix,
